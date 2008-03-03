@@ -1,0 +1,13 @@
+Build.PL
+Changes
+lib/Catalyst/Plugin/AuthenCookie.pm
+MANIFEST			This list of files
+t/basic.t
+t/kwalitee.t
+t/lib/TestApp.pm
+t/pod-coverage.t
+t/pod.t
+Makefile.PL
+README
+META.yml
+SIGNATURE    Added here by Module::Build
