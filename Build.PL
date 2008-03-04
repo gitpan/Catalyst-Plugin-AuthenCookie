@@ -6,8 +6,9 @@ use Module::Build;
 my $builder = Module::Build->new
     ( module_name        => 'Catalyst::Plugin::AuthenCookie',
       license            => 'perl',
-      requires           => { 'Digest::SHA'      => 0,
-                              'Params::Validate' => 0,
+      requires           => { 'Class::Accessor::Fast' => 0,
+                              'Digest::SHA'           => 0,
+                              'Params::Validate'      => 0,
                             },
       build_requires     => { 'Catalyst::Test' => 0,
                               'HTTP::Cookies'  => 0,

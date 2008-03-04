@@ -1,3 +1,8 @@
+0.02   2008-03-04
+
+- Add missing prereq: Class::Accessor::Fast.
+
+
 0.01   2008-03-03
 
 - First version, released on an unsuspecting world.

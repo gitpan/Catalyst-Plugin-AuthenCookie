@@ -3,7 +3,7 @@ package Catalyst::Plugin::AuthenCookie;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 # No doubt SHA-512 is way overkill but it can't hurt (I hope).
 use Digest::SHA qw( sha512_base64 );
