@@ -3,7 +3,7 @@ package Catalyst::Plugin::AuthenCookie;
 use strict;
 use warnings;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 # No doubt SHA-512 is way overkill but it can't hurt (I hope).
 use Digest::SHA qw( sha512_base64 );
@@ -23,7 +23,8 @@ sub setup
         die "You must provide a mac_secret config value for the AuthenCookie plugin\n";
     }
 
-    $config->{name} = 'authen-cookie';
+    $config->{name} = 'authen-cookie'
+        unless exists $config->{name};
 
     $config->{path} = '/'
         unless exists $config->{path};
@@ -167,7 +168,7 @@ retrieving it later, along with some configuration of that cookie.
 When it sets a cookie, it adds a MAC (Message Authentication Code) to
 the cookie. The MAC is based off of the cookie's values and a
 server-side secret you provide. This allows the plugin to verify that
-the cookie is valid when it recieves it from the client on future
+the cookie is valid when it receives it from the client on future
 requests, and prevents a malicious client from forging a user id. The
 cookie is still vulnerable to hijacking (as are most common web
 authentication mechanisms).

@@ -1,3 +1,9 @@
+0.03   2009-01-30
+
+- The name you proivded in config was always overwritten during the
+  plugin's setup. Reported by Marc Sebastian Pelzer. RT #42918.
+
+
 0.02   2008-03-04
 
 - Add missing prereq: Class::Accessor::Fast.

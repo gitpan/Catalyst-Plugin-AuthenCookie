@@ -1,6 +1,6 @@
 ---
 name: Catalyst-Plugin-AuthenCookie
-version: 0.02
+version: 0.03
 author:
   - 'Dave Rolsky, C<< <autarch@urth.org> >>'
 abstract: Plugin for cookie-based authentication
@@ -19,8 +19,8 @@ build_requires:
 provides:
   Catalyst::Plugin::AuthenCookie:
     file: lib/Catalyst/Plugin/AuthenCookie.pm
-    version: 0.02
-generated_by: Module::Build version 0.2808
+    version: 0.03
+generated_by: Module::Build version 0.31012
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
   version: 1.2

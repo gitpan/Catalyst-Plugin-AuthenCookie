@@ -15,7 +15,7 @@ SYNOPSIS
 DESCRIPTION
     This plugin provides a few methods to help you implement a secure
     cookie-based implementation scheme. It *does not* interact with the
-    "Catalyst::Plugin::Authentication" system, and expects that you will
+    `Catalyst::Plugin::Authentication' system, and expects that you will
     implement the actual logging in and out inside your controller code.
 
     What it does provide is a few methods for setting a cookie and
@@ -24,7 +24,7 @@ DESCRIPTION
     When it sets a cookie, it adds a MAC (Message Authentication Code) to
     the cookie. The MAC is based off of the cookie's values and a
     server-side secret you provide. This allows the plugin to verify that
-    the cookie is valid when it recieves it from the client on future
+    the cookie is valid when it receives it from the client on future
     requests, and prevents a malicious client from forging a user id. The
     cookie is still vulnerable to hijacking (as are most common web
     authentication mechanisms).
@@ -33,30 +33,33 @@ METHODS
     This class provides the following methods:
 
   $c->set_authen_cookie( value => $value, expires => $expires )
-    This method takes a "value" and an optional "expires" parameter and sets
+
+    This method takes a `value' and an optional `expires' parameter and sets
     a cookie based on those values, as well as this plugin's configuration.
 
-    The "value" parameter must be a hash reference. Presumably, it will
+    The `value' parameter must be a hash reference. Presumably, it will
     contain something like a user id, which will allow you to identify the
     user on future requests.
 
-    The "expires" parameter is optional. If given, it should be something
-    that "CGI::Cookie" can handle, like "+1d".
+    The `expires' parameter is optional. If given, it should be something
+    that `CGI::Cookie' can handle, like "+1d".
 
     Also see the CONFIG section for more details on configuring the cookie.
 
   $c->unset_authen_cookie()
+
     This method removes the cookie from the client by sending a new cookie
     header with an expiration time in the past and an empty value.
 
   $c->authen_cookie_value()
+
     This method returns a hash reference containing the value of the
     authentication cookie. This method simply returns false if there is no
     cookie or if the MAC is invalid.
 
 CONFIG
     The top-level configuration key for this plugin is "authen_cookie". Most
-    of the configuration keys correspond to "CGI::Cookie" constructor
+    of the configuration keys correspond to `CGI::Cookie' constructor
     parameters, and reading that module's documentation may be helpful. The
     follow config keys are available for this module:
 
@@ -186,19 +189,19 @@ USAGE EXAMPLE
 
         1;
 
-    Loading this plugin gives you a "$c->user()" method which fetches the
-    user on demand. The "_checked_cookie" attribute is there to prevent us
+    Loading this plugin gives you a `$c->user()' method which fetches the
+    user on demand. The `_checked_cookie' attribute is there to prevent us
     from checking for the cookie repeatedly when the cookie does not exist
     or reference a valid user. Another solution would be to return an object
     representing a guest user as a default.
 
 AUTHOR
-    Dave Rolsky, "<autarch@urth.org>"
+    Dave Rolsky, `<autarch@urth.org>'
 
 BUGS
     Please report any bugs or feature requests to
-    "bug-catalyst-plugin-authencookie@rt.cpan.org", or through the web
-    interface at <http://rt.cpan.org>. I will be notified, and then you'll
+    `bug-catalyst-plugin-authencookie@rt.cpan.org', or through the web
+    interface at http://rt.cpan.org. I will be notified, and then you'll
     automatically be notified of progress on your bug as I make changes.
 
 COPYRIGHT & LICENSE
