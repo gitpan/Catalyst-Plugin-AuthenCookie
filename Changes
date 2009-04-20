@@ -1,3 +1,8 @@
+0.04   2009-04-20
+
+- Use MRO::Compat to play nice with Catalyst 5.80.
+
+
 0.03   2009-01-30
 
 - The name you proivded in config was always overwritten during the

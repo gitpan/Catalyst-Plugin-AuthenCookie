@@ -3,18 +3,18 @@ package Catalyst::Plugin::AuthenCookie;
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 # No doubt SHA-512 is way overkill but it can't hurt (I hope).
 use Digest::SHA qw( sha512_base64 );
+use MRO::Compat;
 use Params::Validate qw( validate HASHREF SCALAR );
-
 
 sub setup
 {
     my $self = shift;
 
-    $self->NEXT::setup(@_);
+    $self->next::method(@_);
 
     my $config = $self->config()->{authen_cookie};
 
