@@ -3,7 +3,7 @@ package Catalyst::Plugin::AuthenCookie;
 use strict;
 use warnings;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 # No doubt SHA-512 is way overkill but it can't hurt (I hope).
 use Digest::SHA qw( sha512_base64 );
@@ -302,7 +302,7 @@ The logout action is even simpler:
       my $self = shift;
       my $c    = shift;
 
-      $c->unset_auth_cookie();
+      $c->unset_authen_cookie();
 
       # redirect
   }

@@ -33,7 +33,6 @@ METHODS
     This class provides the following methods:
 
   $c->set_authen_cookie( value => $value, expires => $expires )
-
     This method takes a `value' and an optional `expires' parameter and sets
     a cookie based on those values, as well as this plugin's configuration.
 
@@ -47,12 +46,10 @@ METHODS
     Also see the CONFIG section for more details on configuring the cookie.
 
   $c->unset_authen_cookie()
-
     This method removes the cookie from the client by sending a new cookie
     header with an expiration time in the past and an empty value.
 
   $c->authen_cookie_value()
-
     This method returns a hash reference containing the value of the
     authentication cookie. This method simply returns false if there is no
     cookie or if the MAC is invalid.
@@ -143,7 +140,7 @@ USAGE EXAMPLE
           my $self = shift;
           my $c    = shift;
 
-          $c->unset_auth_cookie();
+          $c->unset_authen_cookie();
 
           # redirect
       }

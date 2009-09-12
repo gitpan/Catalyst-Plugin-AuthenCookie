@@ -1,3 +1,9 @@
+0.05   2009-09-12
+
+- The docs mentioned a nonexistent method, unset_auth_cookie, which should be
+  unset_authen_cookie. Reported by Tomáš Znamenáček. RT #49121.
+
+
 0.04   2009-04-20
 
 - Use MRO::Compat to play nice with Catalyst 5.80.
