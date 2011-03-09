@@ -1,3 +1,10 @@
+0.06   2011-03-09
+
+- Fix bug that made tests stop passing after March 3, 2011.
+
+- This module is now deprecated. Use CatalystX::AuthenCookie instead.
+
+
 0.05   2009-09-12
 
 - The docs mentioned a nonexistent method, unset_auth_cookie, which should be

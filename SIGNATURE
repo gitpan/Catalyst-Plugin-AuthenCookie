@@ -1,5 +1,5 @@
 This file contains message digests of all files listed in MANIFEST,
-signed via the Module::Signature module, version 0.55.
+signed via the Module::Signature module, version 0.66.
 
 To verify the content in this distribution, first make sure you have
 Module::Signature installed, then type:
@@ -15,20 +15,20 @@ not run its Makefile.PL or Build.PL.
 Hash: SHA1
 
 SHA1 a525b73fc25fbfaf39e6f56b616f9bf6206952a1 Build.PL
-SHA1 e4238036a788a4387fdcd9fcf40981665acdbdb3 Changes
-SHA1 1cf813fd3cba01b6e684f2d4bb8da4af45b4696f MANIFEST
-SHA1 87f4145bd23af6bca5ebff8aa9241358cefbedd2 META.yml
-SHA1 e006c21a49b8b25d57aee458d13cdbcb0f834301 README
-SHA1 adb0a2b20b2572b36962a8ef304fa01063f105ed lib/Catalyst/Plugin/AuthenCookie.pm
-SHA1 5e7728baf4ad90016d55e660f67f8c538d0fe231 t/basic.t
+SHA1 d825351d53a9277012a034a86695aaccb785aabf Changes
+SHA1 6b7da45fdf5bf3b14d10e1215d921e042f7fc20e MANIFEST
+SHA1 464005462b57be4f52f1dc46623be8477c407c13 META.yml
+SHA1 18a69b000ad43b237adb13a84faf49ddb657671a README
+SHA1 3c4587bc6695dd842929188781cb809bde60e2dc lib/Catalyst/Plugin/AuthenCookie.pm
+SHA1 b0c0b2f75bd04eda2938706e87ba86fa94bb8863 t/basic.t
 SHA1 9ade2293d6e5ea77d94532132c89cd205ea85ed7 t/kwalitee.t
-SHA1 9f86201167fba0b4c51b90c129c99436edd64932 t/lib/TestApp.pm
+SHA1 d7a5d647e3901d77b26199fd94a270431c7af80f t/lib/TestApp.pm
 SHA1 862851322166d247395d407631edf481c3defebf t/pod-coverage.t
 SHA1 cec881e89926d320475f9de2b7fad02c2169f510 t/pod.t
 -----BEGIN PGP SIGNATURE-----
-Version: GnuPG v1.4.9 (GNU/Linux)
+Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAkqr2rMACgkQIgMCsV8qvRKOHQCfUi3RwSl/M3WsMjxzI5li3jMX
-NvsAnRv6+fMDXzrVuccTBXP9oHXNAt1q
-=ZMeB
+iEYEARECAAYFAk14C9IACgkQIgMCsV8qvRL4EACfW5gluJHiHbg6J/IcpibhFyst
+4wIAniyjkRksLfn+7WCA2BSa+RRVHhlv
+=2yUa
 -----END PGP SIGNATURE-----

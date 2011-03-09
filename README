@@ -1,5 +1,6 @@
 NAME
-    Catalyst::Plugin::AuthenCookie - Plugin for cookie-based authentication
+    Catalyst::Plugin::AuthenCookie - DEPRECATED - use
+    CatalystX::AuthenCookie
 
 SYNOPSIS
         use Catalyst qw( AuthenCookie );
@@ -13,6 +14,8 @@ SYNOPSIS
         $c->unset_authen_cookie();
 
 DESCRIPTION
+    This module is deprecated. Use CatalystX::AuthenCookie instead.
+
     This plugin provides a few methods to help you implement a secure
     cookie-based implementation scheme. It *does not* interact with the
     `Catalyst::Plugin::Authentication' system, and expects that you will

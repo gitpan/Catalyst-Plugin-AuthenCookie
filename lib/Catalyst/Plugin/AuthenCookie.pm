@@ -3,7 +3,7 @@ package Catalyst::Plugin::AuthenCookie;
 use strict;
 use warnings;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 # No doubt SHA-512 is way overkill but it can't hurt (I hope).
 use Digest::SHA qw( sha512_base64 );
@@ -141,7 +141,7 @@ __END__
 
 =head1 NAME
 
-Catalyst::Plugin::AuthenCookie - Plugin for cookie-based authentication
+Catalyst::Plugin::AuthenCookie - DEPRECATED - use CatalystX::AuthenCookie
 
 =head1 SYNOPSIS
 
@@ -156,6 +156,8 @@ Catalyst::Plugin::AuthenCookie - Plugin for cookie-based authentication
     $c->unset_authen_cookie();
 
 =head1 DESCRIPTION
+
+B<This module is deprecated. Use L<CatalystX::AuthenCookie> instead.>
 
 This plugin provides a few methods to help you implement a secure
 cookie-based implementation scheme. It I<does not> interact with the

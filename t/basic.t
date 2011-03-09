@@ -11,7 +11,6 @@ use Digest::SHA qw( sha512_base64 );
 use HTTP::Cookies;
 use HTTP::Date qw( str2time time2str );
 
-
 {
     my $res = request('/login');
 
@@ -23,35 +22,52 @@ use HTTP::Date qw( str2time time2str );
 
     ok( $cookie, 'cookie name is authen-cookie' );
     is( $cookie->{path}, '/', 'cookie path is /' );
-    ok( ! $cookie->{secure}, 'cookie path is not SSL-only' );
-    ok( ! $cookie->{expires}, 'cookie has no expiration set' );
+    ok( !$cookie->{secure},  'cookie path is not SSL-only' );
+    ok( !$cookie->{expires}, 'cookie has no expiration set' );
 
     my $value = $cookie->{value};
     is( $value->{user_id}, 42, 'user_id in cookie is 42' );
-    is( $value->{MAC}, sha512_base64( 'user_id', 42, 'the knife' ),
-        'MAC is expected value' );
+    is(
+        $value->{MAC}, sha512_base64( 'user_id', 42, 'the knife' ),
+        'MAC is expected value'
+    );
 
-    is( get('/user_id'), 'none',
-        'no user id without a cookie' );
+    is(
+        get('/user_id'), 'none',
+        'no user id without a cookie'
+    );
 
-    local $ENV{COOKIE} = $res->header('Set-Cookie');
-    is( get('/user_id'), 42,
-        'user_id is 42 with cookie' );
+    # Setting COOKIE in the ENV hash works for Cat 5.8, the extra parameter to
+    # get works for 5.9+
+    my $cookie_header = $res->header('Set-Cookie');
+    $ENV{COOKIE} = $cookie_header;
 
-    $ENV{COOKIE} =~ s/MAC&./MAC&!/;
+    is(
+        get( '/user_id', { extra_env => { 'COOKIE' => $cookie_header } } ),
+        42,
+        'user_id is 42 with cookie'
+    );
 
-    is( get('/user_id'), 'none',
-        'no user_id when cookie has bad MAC' );
+    $cookie_header =~ s/MAC&./MAC&!/;
+    $ENV{COOKIE} = $cookie_header;
+
+    is(
+        get( '/user_id', { extra_env => { 'COOKIE' => $cookie_header } } ),
+        'none',
+        'no user_id when cookie has bad MAC'
+    );
 }
 
 {
     my $res = request('/long_login');
 
     my %cookies = cookies($res);
-    my $cookie = $cookies{'authen-cookie'};
+    my $cookie  = $cookies{'authen-cookie'};
 
-    is( $cookie->{expires}, 'Thu, 03 Mar 2011 00:00:00 GMT',
-        'cookie has explicit expiration in 2011' );
+    is(
+        $cookie->{expires}, 'Tue, 03 Mar 2099 00:00:00 GMT',
+        'cookie has explicit expiration in 2099'
+    );
 }
 
 {
@@ -62,32 +78,39 @@ use HTTP::Date qw( str2time time2str );
     my $cookie = $res->header('Set-Cookie');
     my ($expires) = $cookie =~ /expires=(.+)(?:;|\z)/;
 
-    like( $cookie, qr/^authen-cookie=(.*);/,
-          'value is explicitly empty' );
-    cmp_ok( str2time($expires), '<', time,
-        'cookie has explicit expiration in the past' );
+    like(
+        $cookie, qr/^authen-cookie=(.*);/,
+        'value is explicitly empty'
+    );
+    cmp_ok(
+        str2time($expires), '<', time,
+        'cookie has explicit expiration in the past'
+    );
 }
 
 {
     my $res = request('/logout');
 
     my %cookies = cookies($res);
-    my $cookie = $cookies{'authen-cookie'};
+    my $cookie  = $cookies{'authen-cookie'};
 
-    ok( ! keys %{ $cookie->{value} },
-        'cookie value is empty' );
+    ok(
+        !keys %{ $cookie->{value} },
+        'cookie value is empty'
+    );
 }
 
 {
-    TestApp->config()->{authen_cookie} =
-        { mac_secret => 'the knife',
-          name       => 'my-cookie',
-          path       => '/path',
-          secure     => 1,
-          # Cannot just use any random thing, because it needs to
-          # match the fake request associated with the response.
-          domain     => '.local',
-        };
+    TestApp->config()->{authen_cookie} = {
+        mac_secret => 'the knife',
+        name       => 'my-cookie',
+        path       => '/path',
+        secure     => 1,
+
+        # Cannot just use any random thing, because it needs to
+        # match the fake request associated with the response.
+        domain => '.local',
+    };
 }
 
 {
@@ -103,8 +126,7 @@ use HTTP::Date qw( str2time time2str );
     is( $cookie->{domain}, '.local', 'cookie domain is .local' );
 }
 
-sub cookies
-{
+sub cookies {
     my $res = shift;
 
     my $request = HTTP::Request->new( GET => 'http://localhost/' );
@@ -114,20 +136,23 @@ sub cookies
     $jar->extract_cookies($res);
 
     my %cookies;
-    my $extract =
-        sub { my ( undef, $name, $val, $path, $domain,
-                   undef, undef, $secure, $expires,
-                   undef, undef ) = @_;
+    my $extract = sub {
+        my (
+            undef, $name, $val,    $path, $domain,
+            undef, undef, $secure, $expires,
+            undef, undef
+        ) = @_;
 
-              my %value = map { unescape($_) } split /&/, $val;
+        my %value = map { unescape($_) } split /&/, $val;
 
-              $cookies{$name} = { value   => \%value,
-                                  path    => $path,
-                                  domain  => $domain,
-                                  secure  => $secure,
-                                  expires => ( $expires ? time2str($expires) : undef ),
-                                };
-            };
+        $cookies{$name} = {
+            value   => \%value,
+            path    => $path,
+            domain  => $domain,
+            secure  => $secure,
+            expires => ( $expires ? time2str($expires) : undef ),
+        };
+    };
 
     $jar->scan($extract);
 
