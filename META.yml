@@ -18,11 +18,11 @@ name: Catalyst-Plugin-AuthenCookie
 provides:
   Catalyst::Plugin::AuthenCookie:
     file: lib/Catalyst/Plugin/AuthenCookie.pm
-    version: 0.06
+    version: 0.07
 requires:
   Class::Accessor::Fast: 0
   Digest::SHA: 0
   Params::Validate: 0
 resources:
   license: http://dev.perl.org/licenses/
-version: 0.06
+version: 0.07

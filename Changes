@@ -1,3 +1,8 @@
+0.07   2011-03-10
+
+- Fix test failure on machines which don't support 64-bit time_t.
+
+
 0.06   2011-03-09
 
 - Fix bug that made tests stop passing after March 3, 2011.
